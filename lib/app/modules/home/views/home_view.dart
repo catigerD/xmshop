@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:xmshop/app/modules/home/views/home_banner.dart';
+import 'package:xmshop/app/modules/home/views/home_bar.dart';
 
-import '../../../widget/keep_alive_wrapper.dart';
+import '../../../services/keep_alive_wrapper.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -13,17 +14,31 @@ class HomeView extends GetView<HomeController> {
     return KeepAliveWrapper(
       keepAlive: true,
       child: Scaffold(
-          appBar: AppBar(
-            title: const Text('HomeView'),
-            centerTitle: true,
+          body: Stack(children: [
+        Positioned(
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0,
+          child: MediaQuery.removePadding(
+            context: context,
+            removeTop: true,
+            child: ListView.builder(
+                controller: controller.scrollController,
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  if (index == 0) {
+                    return const HomeBanner();
+                  }
+
+                  return ListTile(
+                    title: Text("$index"),
+                  );
+                }),
           ),
-          body: ListView.builder(
-              itemCount: 20,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text("$index"),
-                );
-              })),
+        ),
+        Positioned(left: 0, right: 0, top: 0, child: HomeBar()),
+      ])),
     );
   }
 }
