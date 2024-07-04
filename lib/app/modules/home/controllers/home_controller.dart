@@ -23,12 +23,10 @@ class HomeController extends GetxController {
     if (scrollController.offset > homeBarStateOffsetThreshold) {
       if (homeBarState.value != HomeBarState.fix) {
         homeBarState.value = HomeBarState.fix;
-        update();
       }
     } else {
       if (homeBarState.value != HomeBarState.float) {
         homeBarState.value = HomeBarState.float;
-        update();
       }
     }
   }

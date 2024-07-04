@@ -2,17 +2,17 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'response_dto.g.dart';
 
-@JsonSerializable(genericArgumentFactories: true)
-class ResponseDto<Result> {
-  final String? message;
-  final Result? result;
+@JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
+class ResponseDto<T> {
+  String? message;
+  T? result;
 
-  ResponseDto(this.message, this.result);
+  ResponseDto();
 
-  factory ResponseDto.fromJson(Map<String, dynamic> json,
-          Result Function(dynamic json) fromJsonResult) =>
-      _$ResponseDtoFromJson(json, fromJsonResult);
+  factory ResponseDto.fromJson(
+          Map<String, dynamic> json, T Function(dynamic json) fromJsonT) =>
+      _$ResponseDtoFromJson(json, fromJsonT);
 
-  Map<String, dynamic> toJson(Object? Function(Result value) toJsonResult) =>
-      _$ResponseDtoToJson(this, toJsonResult);
+  Map<String, dynamic> toJson(Object? Function(T value) toJsonT) =>
+      _$ResponseDtoToJson(this, toJsonT);
 }

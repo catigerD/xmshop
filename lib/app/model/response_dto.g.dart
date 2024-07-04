@@ -6,22 +6,21 @@ part of 'response_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ResponseDto<Result> _$ResponseDtoFromJson<Result>(
+ResponseDto<T> _$ResponseDtoFromJson<T>(
   Map<String, dynamic> json,
-  Result Function(Object? json) fromJsonResult,
+  T Function(Object? json) fromJsonT,
 ) =>
-    ResponseDto<Result>(
-      json['message'] as String?,
-      _$nullableGenericFromJson(json['result'], fromJsonResult),
-    );
+    ResponseDto<T>()
+      ..message = json['message'] as String?
+      ..result = _$nullableGenericFromJson(json['result'], fromJsonT);
 
-Map<String, dynamic> _$ResponseDtoToJson<Result>(
-  ResponseDto<Result> instance,
-  Object? Function(Result value) toJsonResult,
+Map<String, dynamic> _$ResponseDtoToJson<T>(
+  ResponseDto<T> instance,
+  Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{
       'message': instance.message,
-      'result': _$nullableGenericToJson(instance.result, toJsonResult),
+      'result': _$nullableGenericToJson(instance.result, toJsonT),
     };
 
 T? _$nullableGenericFromJson<T>(
