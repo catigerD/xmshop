@@ -1,6 +1,6 @@
 
 import 'package:get/get.dart';
 
-class HomeBarController extends GetxController {
+class HomeToolbarController extends GetxController {
 
 }

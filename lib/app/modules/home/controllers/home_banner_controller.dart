@@ -16,15 +16,15 @@ class HomeBannerController extends GetxController {
   }
 
   void _fetchData() async {
-    final response = await dio.get(PathManager.API_FOCUS);
+    final response = await dio.get(PathManager.apiFocus);
     final focusList =
         ResponseDto<List<HomeFocusDto>>.fromJson(response.data, (json) {
       return (json as List).map((e) => HomeFocusDto.fromJson(e)).toList();
     }).result;
 
     imgUrlList.value = focusList
-            ?.where((e) => e.pic != null && e.pic!.isNotEmpty)
-            .map((e) => handleUrl(e.pic!)!)
+            ?.where((e) => e.pic.isNotEmpty)
+            .map((e) => handleUrl(e.pic))
             .toList() ??
         [];
   }

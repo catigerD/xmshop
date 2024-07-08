@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:xmshop/app/modules/home/views/home_banner.dart';
-import 'package:xmshop/app/modules/home/views/home_bar.dart';
+import 'package:xmshop/app/modules/home/views/home_banner_view.dart';
+import 'package:xmshop/app/modules/home/views/home_category_view.dart';
+import 'package:xmshop/app/modules/home/views/home_toolbar_view.dart';
+import 'package:xmshop/app/modules/home/views/home_hint_view.dart';
 
 import '../../../services/keep_alive_wrapper.dart';
 import '../controllers/home_controller.dart';
@@ -23,21 +25,17 @@ class HomeView extends GetView<HomeController> {
           child: MediaQuery.removePadding(
             context: context,
             removeTop: true,
-            child: ListView.builder(
-                controller: controller.scrollController,
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  if (index == 0) {
-                    return const HomeBanner();
-                  }
-
-                  return ListTile(
-                    title: Text("$index"),
-                  );
-                }),
+            child: ListView(
+              controller: controller.scrollController,
+              children: const [
+                HomeBannerView(),
+                HomeHintView(),
+                HomeCategoryView()
+              ],
+            ),
           ),
         ),
-        Positioned(left: 0, right: 0, top: 0, child: HomeBar()),
+        Positioned(left: 0, right: 0, top: 0, child: HomeToolbarView()),
       ])),
     );
   }

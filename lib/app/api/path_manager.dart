@@ -1,4 +1,5 @@
 
 class PathManager {
-  static String API_FOCUS = "/api/focus";
+  static String apiFocus = "/api/focus";
+  static String apiBestCate = "/api/bestCate";
 }

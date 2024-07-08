@@ -5,12 +5,12 @@ part 'home_focus_dto.g.dart';
 @JsonSerializable(explicitToJson: true)
 class HomeFocusDto {
   @JsonKey(name: "_id")
-  String? id;
-  String? title;
-  String? status;
-  String? pic;
-  String? url;
-  int? position;
+  String id = "";
+  String title = "";
+  String status = "";
+  String pic = "";
+  String url = "";
+  int position = 0;
 
   HomeFocusDto();
 

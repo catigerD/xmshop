@@ -3,8 +3,8 @@ import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/modules/home/controllers/home_banner_controller.dart';
 
-class HomeBanner extends GetView<HomeBannerController> {
-  const HomeBanner({super.key});
+class HomeBannerView extends GetView<HomeBannerController> {
+  const HomeBannerView({super.key});
 
   @override
   Widget build(BuildContext context) {

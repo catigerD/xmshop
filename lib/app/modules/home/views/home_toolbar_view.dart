@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:xmshop/app/modules/home/controllers/home_bar_controller.dart';
 import 'package:xmshop/app/modules/home/controllers/home_controller.dart';
 
-class HomeBar extends GetView<HomeBarController> {
-  HomeBar({super.key});
+class HomeToolbarView extends GetView<HomeToolbarController> {
+  HomeToolbarView({super.key});
 
   final homeController = Get.find<HomeController>();
 
