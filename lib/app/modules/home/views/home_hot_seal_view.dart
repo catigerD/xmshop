@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/circular_reveal_clipper.dart';
-import 'package:xmshop/app/modules/home/controllers/home_best_seal_controller.dart';
+import 'package:xmshop/app/modules/home/controllers/home_hot_seal_controller.dart';
 
-class HomeBestSealView extends GetView<HomeBestSealController> {
-  const HomeBestSealView({super.key});
+class HomeHotSealView extends GetView<HomeHotSealController> {
+  const HomeHotSealView({super.key});
 
   @override
   Widget build(BuildContext context) {

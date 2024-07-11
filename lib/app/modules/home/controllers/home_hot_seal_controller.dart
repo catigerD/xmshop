@@ -2,11 +2,11 @@ import 'package:get/get.dart';
 import 'package:xmshop/app/api/dio_manager.dart';
 import 'package:xmshop/app/api/path_manager.dart';
 import 'package:xmshop/app/api/url_manager.dart';
-import 'package:xmshop/app/model/home_best_seal_banner_dto.dart';
-import 'package:xmshop/app/model/home_best_seal_commodity_dto.dart';
+import 'package:xmshop/app/model/home_focus_dto.dart';
+import 'package:xmshop/app/model/home_plist_dto.dart';
 import 'package:xmshop/app/model/response_dto.dart';
 
-class HomeBestSealController extends GetxController {
+class HomeHotSealController extends GetxController {
   final header = const HomeBestSealHeaderVO(title: "", subTitle: "").obs;
   final bannerList = <HomeBestSealBannerVO>[].obs;
 
@@ -28,10 +28,10 @@ class HomeBestSealController extends GetxController {
   void _initBanner() async {
     final response =
         await dio.get(PathManager.apiFocus, queryParameters: {"position": 2});
-    final dtoList = ResponseDto<List<HomeBestSealBannerDto>>.fromJson(
+    final dtoList = ResponseDto<List<HomeFocusDto>>.fromJson(
         response.data, (json) {
       return (json as List)
-          .map((e) => HomeBestSealBannerDto.fromJson(e))
+          .map((e) => HomeFocusDto.fromJson(e))
           .toList();
     }).result;
     bannerList.value = dtoList?.map((e) => e.convert2VO()).toList() ?? [];
@@ -42,7 +42,7 @@ class HomeBestSealController extends GetxController {
         await dio.get(PathManager.apiPlist, queryParameters: {"is_hot": 1});
     final dtoList = ResponseDto.fromJson(response.data, (json) {
       return (json as List)
-          .map((e) => HomeBestSealCommodityDto.fromJson(e))
+          .map((e) => HomePListDto.fromJson(e))
           .toList();
     }).result;
     commodityList.value =
@@ -50,7 +50,7 @@ class HomeBestSealController extends GetxController {
   }
 }
 
-extension on HomeBestSealBannerDto {
+extension on HomeFocusDto {
   HomeBestSealBannerVO convert2VO() {
     return HomeBestSealBannerVO(pic: handleUrl(pic));
   }
@@ -74,7 +74,7 @@ class HomeBestSealBannerVO {
   });
 }
 
-extension on HomeBestSealCommodityDto {
+extension on HomePListDto {
   HomeBestSealCommodityVO convert2VO() {
     return HomeBestSealCommodityVO(
         title: title,

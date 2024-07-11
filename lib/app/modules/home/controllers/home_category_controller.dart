@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:xmshop/app/api/dio_manager.dart';
 import 'package:xmshop/app/api/path_manager.dart';
 import 'package:xmshop/app/api/url_manager.dart';
-import 'package:xmshop/app/model/home_category_dto.dart';
+import 'package:xmshop/app/model/home_best_cate_dto.dart';
 import 'package:xmshop/app/model/response_dto.dart';
 
 class HomeCategoryController extends GetxController {
@@ -17,8 +17,8 @@ class HomeCategoryController extends GetxController {
   void _loadData() async {
     final response = await dio.get(PathManager.apiBestCate);
     final categoryDtoList =
-        ResponseDto<List<HomeCategoryDto>>.fromJson(response.data, (json) {
-      return (json as List).map((e) => HomeCategoryDto.fromJson(e)).toList();
+        ResponseDto<List<HomeBestCateDto>>.fromJson(response.data, (json) {
+      return (json as List).map((e) => HomeBestCateDto.fromJson(e)).toList();
     }).result;
     final voList = categoryDtoList
             ?.map((e) =>

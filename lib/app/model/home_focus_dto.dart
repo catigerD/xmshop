@@ -2,17 +2,24 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'home_focus_dto.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class HomeFocusDto {
   @JsonKey(name: "_id")
-  String id = "";
-  String title = "";
-  String status = "";
-  String pic = "";
-  String url = "";
-  int position = 0;
+  final String id;
+  final String title;
+  final String status;
+  final String pic;
+  final String url;
+  final int position;
 
-  HomeFocusDto();
+  const HomeFocusDto({
+    required this.id,
+    required this.title,
+    required this.status,
+    required this.pic,
+    required this.url,
+    required this.position,
+  });
 
   factory HomeFocusDto.fromJson(Map<String, dynamic> json) =>
       _$HomeFocusDtoFromJson(json);

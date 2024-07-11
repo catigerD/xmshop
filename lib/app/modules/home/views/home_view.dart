@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/modules/home/views/home_banner_view.dart';
-import 'package:xmshop/app/modules/home/views/home_best_seal_view.dart';
+import 'package:xmshop/app/modules/home/views/home_hot_seal_view.dart';
 import 'package:xmshop/app/modules/home/views/home_category_view.dart';
 import 'package:xmshop/app/modules/home/views/home_toolbar_view.dart';
 import 'package:xmshop/app/modules/home/views/home_hint_view.dart';
@@ -34,7 +34,7 @@ class HomeView extends GetView<HomeController> {
                   HomeBannerView(),
                   HomeHintView(),
                   HomeCategoryView(),
-                  HomeBestSealView()
+                  HomeHotSealView()
                 ],
               ),
             ),

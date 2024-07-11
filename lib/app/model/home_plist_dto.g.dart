@@ -1,14 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_best_seal_commodity_dto.dart';
+part of 'home_plist_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-HomeBestSealCommodityDto _$HomeBestSealCommodityDtoFromJson(
-        Map<String, dynamic> json) =>
-    HomeBestSealCommodityDto(
+HomePListDto _$HomePListDtoFromJson(Map<String, dynamic> json) => HomePListDto(
       json['_id'] as String,
       json['title'] as String,
       json['cid'] as String,
@@ -18,8 +16,7 @@ HomeBestSealCommodityDto _$HomeBestSealCommodityDtoFromJson(
       json['s_pic'] as String,
     );
 
-Map<String, dynamic> _$HomeBestSealCommodityDtoToJson(
-        HomeBestSealCommodityDto instance) =>
+Map<String, dynamic> _$HomePListDtoToJson(HomePListDto instance) =>
     <String, dynamic>{
       '_id': instance.id,
       'title': instance.title,
