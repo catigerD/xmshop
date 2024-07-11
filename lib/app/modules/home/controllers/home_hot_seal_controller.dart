@@ -7,10 +7,10 @@ import 'package:xmshop/app/model/home_plist_dto.dart';
 import 'package:xmshop/app/model/response_dto.dart';
 
 class HomeHotSealController extends GetxController {
-  final header = const HomeBestSealHeaderVO(title: "", subTitle: "").obs;
-  final bannerList = <HomeBestSealBannerVO>[].obs;
+  final header = const HomeHotSealHeaderVO(title: "", subTitle: "").obs;
+  final bannerList = <HomeHotSealBannerVO>[].obs;
 
-  final commodityList = <HomeBestSealCommodityVO>[].obs;
+  final commodityList = <HomeHotSealCommodityVO>[].obs;
 
   @override
   void onInit() {
@@ -22,7 +22,7 @@ class HomeHotSealController extends GetxController {
 
   void _initHeader() {
     header.value =
-        const HomeBestSealHeaderVO(title: "热销甄选", subTitle: "更多手机推荐 >");
+        const HomeHotSealHeaderVO(title: "热销甄选", subTitle: "更多手机推荐 >");
   }
 
   void _initBanner() async {
@@ -51,32 +51,32 @@ class HomeHotSealController extends GetxController {
 }
 
 extension on HomeFocusDto {
-  HomeBestSealBannerVO convert2VO() {
-    return HomeBestSealBannerVO(pic: handleUrl(pic));
+  HomeHotSealBannerVO convert2VO() {
+    return HomeHotSealBannerVO(pic: handleUrl(pic));
   }
 }
 
-class HomeBestSealHeaderVO {
+class HomeHotSealHeaderVO {
   final String title;
   final String subTitle;
 
-  const HomeBestSealHeaderVO({
+  const HomeHotSealHeaderVO({
     required this.title,
     required this.subTitle,
   });
 }
 
-class HomeBestSealBannerVO {
+class HomeHotSealBannerVO {
   final String pic;
 
-  const HomeBestSealBannerVO({
+  const HomeHotSealBannerVO({
     required this.pic,
   });
 }
 
 extension on HomePListDto {
-  HomeBestSealCommodityVO convert2VO() {
-    return HomeBestSealCommodityVO(
+  HomeHotSealCommodityVO convert2VO() {
+    return HomeHotSealCommodityVO(
         title: title,
         subTitle: subTitle,
         price: "￥$price",
@@ -84,13 +84,13 @@ extension on HomePListDto {
   }
 }
 
-class HomeBestSealCommodityVO {
+class HomeHotSealCommodityVO {
   final String title;
   final String subTitle;
   final String price;
   final String pic;
 
-  const HomeBestSealCommodityVO({
+  const HomeHotSealCommodityVO({
     required this.title,
     required this.subTitle,
     required this.price,

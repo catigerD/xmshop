@@ -89,7 +89,7 @@ class HomeHotSealView extends GetView<HomeHotSealController> {
     });
   }
 
-  Widget _commodityItem(BuildContext context, HomeBestSealCommodityVO vo) {
+  Widget _commodityItem(BuildContext context, HomeHotSealCommodityVO vo) {
     return Container(
       padding: const EdgeInsets.only(top: 6, bottom: 6, left: 8),
       decoration: BoxDecoration(
