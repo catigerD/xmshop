@@ -8,7 +8,9 @@ import '../../home/views/home_view.dart';
 import '../../user/views/user_view.dart';
 
 class TabsController extends GetxController {
-  var curIndex = 0.obs;
+  static const _initIndex = 1;
+
+  final curIndex = _initIndex.obs;
 
   final pages = const [
     HomeView(),
@@ -18,7 +20,7 @@ class TabsController extends GetxController {
     UserView()
   ];
 
-  final pageController = PageController(initialPage: 0);
+  final pageController = PageController(initialPage: _initIndex);
 
   void setCurIndex(int index) {
     curIndex.value = index;
