@@ -21,6 +21,7 @@ class TabsView extends GetView<TabsController> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
           currentIndex: controller.curIndex.value,
           onTap: (index) {
             controller.setCurIndex(index);

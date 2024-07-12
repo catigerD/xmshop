@@ -1,23 +1,11 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController {
-  //TODO: Implement CategoryController
+  final curPid = "".obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void select(String pid) {
+    curPid.value = pid;
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

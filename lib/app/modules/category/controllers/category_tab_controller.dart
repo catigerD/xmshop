@@ -3,10 +3,13 @@ import 'package:xmshop/app/api/dio_manager.dart';
 import 'package:xmshop/app/api/path_manager.dart';
 import 'package:xmshop/app/model/home_pcate_dto.dart';
 import 'package:xmshop/app/model/response_dto.dart';
+import 'package:xmshop/app/modules/category/controllers/category_controller.dart';
 
 class CategoryTabController extends GetxController {
   final tabList = <CategoryTabItemVO>[].obs;
   final selectedIndex = 0.obs;
+
+  final parentController = Get.find<CategoryController>();
 
   @override
   void onInit() {
@@ -25,24 +28,27 @@ class CategoryTabController extends GetxController {
       dtoList = null;
     }
     tabList.value = dtoList?.map((e) => e.convert2VO()).toList() ?? [];
+    parentController.select(tabList[selectedIndex.value].pid);
   }
 
-  void selected(int index) {
+  void select(int index) {
     selectedIndex.value = index;
   }
 }
 
 extension on HomePcateDto {
   CategoryTabItemVO convert2VO() {
-    return CategoryTabItemVO(title: title);
+    return CategoryTabItemVO(pid: id, title: title);
   }
 }
 
 class CategoryTabItemVO {
+  final String pid;
   final String title;
 
 //<editor-fold desc="Data Methods">
   const CategoryTabItemVO({
+    required this.pid,
     required this.title,
   });
 //</editor-fold>

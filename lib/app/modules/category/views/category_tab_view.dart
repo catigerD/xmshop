@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:xmshop/app/modules/category/controllers/category_controller.dart';
 import 'package:xmshop/app/modules/category/controllers/category_tab_controller.dart';
 
 class CategoryTabView extends GetView<CategoryTabController> {
-  const CategoryTabView({super.key});
+  CategoryTabView({super.key});
 
   static final Color indicatorColor = Color(int.parse("0xfffd6f06"));
+
+  final parentController = Get.find<CategoryController>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,8 @@ class CategoryTabView extends GetView<CategoryTabController> {
     return Obx(() {
       return InkWell(
         onTap: () {
-          controller.selected(index);
+          controller.select(index);
+          parentController.select(controller.tabList[index].pid);
         },
         child: IntrinsicHeight(
           child: Row(
