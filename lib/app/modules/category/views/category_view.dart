@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:xmshop/app/modules/category/views/category_tab_view.dart';
 import 'package:xmshop/app/modules/category/views/category_toolbar_view.dart';
 
 import '../controllers/category_controller.dart';
@@ -10,13 +11,16 @@ class CategoryView extends GetView<CategoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CategoryToolbarView(
-        statusbarHeight: MediaQuery.of(context).padding.top,
-      ),
+      backgroundColor: Colors.white,
+      appBar: const CategoryToolbarView(),
       body: Container(
+        padding: const EdgeInsets.only(top: 16),
         decoration: const BoxDecoration(color: Colors.white),
-        child: Column(
-          children: [],
+        child: Row(
+          children: [
+            const Expanded(flex: 1, child: CategoryTabView()),
+            Expanded(flex: 3, child: Container())
+          ],
         ),
       ),
     );

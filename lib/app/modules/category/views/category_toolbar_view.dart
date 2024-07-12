@@ -1,13 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/modules/category/controllers/category_toolbar_controller.dart';
 
 class CategoryToolbarView extends GetView<CategoryToolbarController>
     implements PreferredSizeWidget {
-  final double statusbarHeight;
-
-  const CategoryToolbarView({super.key, required this.statusbarHeight});
+  const CategoryToolbarView({super.key});
 
   static const double toolbarHeight = 40;
 
@@ -17,12 +14,14 @@ class CategoryToolbarView extends GetView<CategoryToolbarController>
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(color: Colors.transparent),
       padding: const EdgeInsets.only(left: 12, right: 12),
       child: Column(
         children: [
-          SizedBox(
-            height: statusbarHeight,
+          Container(
+            decoration: const BoxDecoration(color: Colors.transparent),
+            child: SizedBox(
+              height: MediaQuery.of(context).padding.top,
+            ),
           ),
           _toolbar(context)
         ],
@@ -31,8 +30,9 @@ class CategoryToolbarView extends GetView<CategoryToolbarController>
   }
 
   Widget _toolbar(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: toolbarHeight,
+      decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -89,5 +89,5 @@ class CategoryToolbarView extends GetView<CategoryToolbarController>
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(toolbarHeight + statusbarHeight);
+  Size get preferredSize => const Size.fromHeight(toolbarHeight);
 }
