@@ -50,7 +50,8 @@ class CategorySubView extends GetView<CategorySubController> {
   Widget _item(BuildContext context, CategorySubItemVO vo) {
     return InkWell(
       onTap: () {
-        Get.toNamed(Routes.PRODUCT, arguments: {"pid": vo.id});
+        Get.toNamed(Routes.PRODUCT,
+            arguments: {"pid": vo.id, "title": vo.title});
       },
       child: Column(
         children: [
