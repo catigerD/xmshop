@@ -12,7 +12,7 @@ PCateDto _$PCateDtoFromJson(Map<String, dynamic> json) => PCateDto(
       status: (json['status'] as num).toInt(),
       pic: json['pic'] as String,
       pid: json['pid'] as String,
-      sort: (json['sort'] as num).toInt(),
+      sort: json['sort'],
       goProduct: (json['go_product'] as num).toInt(),
       productId: json['product_id'] as String,
     );

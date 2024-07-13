@@ -10,7 +10,7 @@ class PCateDto {
   final int status;
   final String pic;
   final String pid;
-  final int sort;
+  final dynamic sort; //int or string
   final int goProduct;
   final String productId;
 

@@ -11,12 +11,12 @@ class SearchToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 56,
+      height: 28,
       alignment: Alignment.centerLeft,
-      padding: const EdgeInsets.only(left: 12, right: 12),
+      padding: const EdgeInsets.only(left: 6, right: 6),
       decoration: BoxDecoration(
         color: _bgColor,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -25,7 +25,7 @@ class SearchToolbar extends StatelessWidget {
           Icon(
             Icons.search,
             color: _hintColor,
-            size: 24,
+            size: 16,
           ),
           Text(
             title,

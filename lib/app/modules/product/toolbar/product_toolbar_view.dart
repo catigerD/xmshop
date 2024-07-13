@@ -5,7 +5,7 @@ import 'package:xmshop/app/widget/search_toolbar.dart';
 
 class ProductToolbarView extends GetView<ProductToolbarController>
     implements PreferredSizeWidget {
-  static const _height = 80.0;
+  static const _height = 36.0;
   static final _arrowColor = Color(int.parse("0xff383838"));
 
   @override
@@ -16,10 +16,9 @@ class ProductToolbarView extends GetView<ProductToolbarController>
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: _height,
       alignment: Alignment.topLeft,
-      padding: EdgeInsets.only(
-          left: 24, top: MediaQuery.of(context).padding.top, right: 24),
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      padding: const EdgeInsets.only(left: 12, right: 12, bottom: 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -38,7 +37,7 @@ class ProductToolbarView extends GetView<ProductToolbarController>
             ),
           ),
           const SizedBox(
-            width: 24,
+            width: 12,
           ),
           Expanded(
               flex: 1,
