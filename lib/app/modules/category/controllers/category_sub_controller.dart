@@ -1,12 +1,14 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:xmshop/app/api/http_client.dart';
 import 'package:xmshop/app/api/path_manager.dart';
 import 'package:xmshop/app/model/pcate_dto.dart';
 
-class CategoryProductController extends GetxController {
-  final _categoryList = <CategoryProductListVO>[];
+class CategorySubController extends GetxController {
+  final _categoryList = <CategorySubListVO>[];
 
-  final itemList = <CategoryProductItemVO>[].obs;
+  final itemList = <CategorySubItemVO>[].obs;
 
   String _curPid = "";
 
@@ -33,26 +35,29 @@ class CategoryProductController extends GetxController {
 }
 
 extension on PCateDto {
-  CategoryProductItemVO convert2VO() {
-    return CategoryProductItemVO(pic: HttpClient.handleUrl(pic), title: title);
+  CategorySubItemVO convert2VO() {
+    return CategorySubItemVO(
+        id: id, pic: HttpClient.handleUrl(pic), title: title);
   }
 }
 
-class CategoryProductItemVO {
+class CategorySubItemVO {
+  final String id;
   final String pic;
   final String title;
 
-  const CategoryProductItemVO({
+  const CategorySubItemVO({
+    required this.id,
     required this.pic,
     required this.title,
   });
 }
 
-class CategoryProductListVO {
+class CategorySubListVO {
   final String pid;
-  final List<CategoryProductItemVO> itemList;
+  final List<CategorySubItemVO> itemList;
 
-  const CategoryProductListVO({
+  const CategorySubListVO({
     required this.pid,
     required this.itemList,
   });

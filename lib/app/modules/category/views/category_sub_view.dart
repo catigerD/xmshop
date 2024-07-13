@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:xmshop/app/modules/category/controllers/category_product_controller.dart';
+import 'package:xmshop/app/modules/category/controllers/category_sub_controller.dart';
+import 'package:xmshop/app/routes/app_pages.dart';
 
-class CategoryProductView extends GetView<CategoryProductController> {
-  CategoryProductView({super.key, required this.pid}) {
-    controller.loadPList(pid);
+class CategorySubView extends GetView<CategorySubController> {
+  CategorySubView({super.key, required this.tabPid}) {
+    controller.loadPList(tabPid);
   }
 
-  final String pid;
+  final String tabPid;
 
   @override
   Widget build(BuildContext context) {
@@ -46,22 +47,27 @@ class CategoryProductView extends GetView<CategoryProductController> {
     );
   }
 
-  Widget _item(BuildContext context, CategoryProductItemVO vo) {
-    return Column(
-      children: [
-        AspectRatio(
-            aspectRatio: 1,
-            child: SizedBox(
-                width: double.infinity,
-                child: Image.network(
-                  vo.pic,
-                  fit: BoxFit.cover,
-                ))),
-        Text(
-          vo.title,
-          style: Theme.of(context).textTheme.labelMedium,
-        )
-      ],
+  Widget _item(BuildContext context, CategorySubItemVO vo) {
+    return InkWell(
+      onTap: () {
+        Get.toNamed(Routes.PRODUCT, arguments: {"pid": vo.id});
+      },
+      child: Column(
+        children: [
+          AspectRatio(
+              aspectRatio: 1,
+              child: SizedBox(
+                  width: double.infinity,
+                  child: Image.network(
+                    vo.pic,
+                    fit: BoxFit.cover,
+                  ))),
+          Text(
+            vo.title,
+            style: Theme.of(context).textTheme.labelMedium,
+          )
+        ],
+      ),
     );
   }
 }

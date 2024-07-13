@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:xmshop/app/modules/product/product_binding.dart';
+import 'package:xmshop/app/modules/product/product_view.dart';
 
 import '../modules/tabs/bindings/tabs_binding.dart';
 import '../modules/tabs/views/tabs_view.dart';
@@ -16,5 +18,9 @@ class AppPages {
       page: () => const TabsView(),
       binding: TabsBinding(),
     ),
+    GetPage(
+        name: _Paths.PRODUCT,
+        page: () => const ProductView(),
+        binding: ProductBinding())
   ];
 }

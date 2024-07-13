@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:xmshop/app/modules/category/controllers/category_product_controller.dart';
+import 'package:xmshop/app/modules/category/controllers/category_sub_controller.dart';
 import 'package:xmshop/app/modules/category/controllers/category_tab_controller.dart';
 import 'package:xmshop/app/modules/category/controllers/category_toolbar_controller.dart';
 
@@ -13,6 +13,6 @@ class CategoryBinding extends Bindings {
     );
     Get.lazyPut<CategoryToolbarController>(() => CategoryToolbarController());
     Get.lazyPut<CategoryTabController>(() => CategoryTabController());
-    Get.lazyPut<CategoryProductController>(() => CategoryProductController());
+    Get.lazyPut<CategorySubController>(() => CategorySubController());
   }
 }

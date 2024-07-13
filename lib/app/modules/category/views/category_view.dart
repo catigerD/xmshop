@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:xmshop/app/modules/category/views/category_product_view.dart';
+import 'package:xmshop/app/modules/category/views/category_sub_view.dart';
 import 'package:xmshop/app/modules/category/views/category_tab_view.dart';
 import 'package:xmshop/app/modules/category/views/category_toolbar_view.dart';
 
@@ -23,7 +23,7 @@ class CategoryView extends GetView<CategoryController> {
             Expanded(
                 flex: 3,
                 child: Obx(() {
-                  return CategoryProductView(pid: controller.curPid.value);
+                  return CategorySubView(tabPid: controller.tabPid.value);
                 }))
           ],
         ),

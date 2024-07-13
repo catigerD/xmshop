@@ -30,7 +30,7 @@ class CategoryTabView extends GetView<CategoryTabController> {
       return InkWell(
         onTap: () {
           controller.select(index);
-          parentController.select(controller.tabList[index].pid);
+          parentController.selectTab(controller.tabList[index].id);
         },
         child: IntrinsicHeight(
           child: Row(

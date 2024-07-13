@@ -21,7 +21,7 @@ class CategoryTabController extends GetxController {
         PathManager.apiPCate,
         fromJsonT: PCateDto.fromJson);
     tabList.value = dtoList?.map((e) => e.convert2VO()).toList() ?? [];
-    parentController.select(tabList[selectedIndex.value].pid);
+    parentController.selectTab(tabList[selectedIndex.value].id);
   }
 
   void select(int index) {
@@ -31,17 +31,17 @@ class CategoryTabController extends GetxController {
 
 extension on PCateDto {
   CategoryTabItemVO convert2VO() {
-    return CategoryTabItemVO(pid: id, title: title);
+    return CategoryTabItemVO(id: id, title: title);
   }
 }
 
 class CategoryTabItemVO {
-  final String pid;
+  final String id;
   final String title;
 
 //<editor-fold desc="Data Methods">
   const CategoryTabItemVO({
-    required this.pid,
+    required this.id,
     required this.title,
   });
 //</editor-fold>
