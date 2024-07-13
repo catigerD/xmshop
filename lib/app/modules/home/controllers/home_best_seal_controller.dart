@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
-import 'package:xmshop/app/api/dio_manager.dart';
+import 'package:xmshop/app/api/http_client.dart';
 import 'package:xmshop/app/api/path_manager.dart';
-import 'package:xmshop/app/api/url_manager.dart';
 import 'package:xmshop/app/model/plist_dto.dart';
-import 'package:xmshop/app/model/response_dto.dart';
 
 class HomeBestSealController extends GetxController {
   final headerVO = const HomeBestSealHeaderVO(title: "", subtitle: "").obs;
@@ -22,18 +20,10 @@ class HomeBestSealController extends GetxController {
   }
 
   void _initCommodityList() async {
-    final response =
-        await dio.get(PathManager.apiPlist, queryParameters: {"is_best": 1});
-
-    List<PListDto>? dtoList;
-    try {
-      dtoList = ResponseDto<List<PListDto>>.fromJson(response.data, (json) {
-        return (json as List).map((e) => PListDto.fromJson(e)).toList();
-      }).result;
-    } catch (e) {
-      dtoList = null;
-    }
-
+    List<PListDto>? dtoList = await HttpClient.getList<PListDto>(
+        PathManager.apiPlist,
+        queryParameters: {"is_best": 1},
+        fromJsonT: PListDto.fromJson);
     commodityVOList.value = dtoList?.map((e) => e.convertTo()).toList() ?? [];
   }
 }
@@ -51,7 +41,7 @@ class HomeBestSealHeaderVO {
 extension on PListDto {
   HomeBestSealCommodityVO convertTo() {
     return HomeBestSealCommodityVO(
-        pic: handleUrl(pic),
+        pic: HttpClient.handleUrl(pic),
         title: title,
         subTitle: subTitle,
         price: "￥$price");

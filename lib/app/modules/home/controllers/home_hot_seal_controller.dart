@@ -1,10 +1,8 @@
 import 'package:get/get.dart';
-import 'package:xmshop/app/api/dio_manager.dart';
+import 'package:xmshop/app/api/http_client.dart';
 import 'package:xmshop/app/api/path_manager.dart';
-import 'package:xmshop/app/api/url_manager.dart';
 import 'package:xmshop/app/model/focus_dto.dart';
 import 'package:xmshop/app/model/plist_dto.dart';
-import 'package:xmshop/app/model/response_dto.dart';
 
 class HomeHotSealController extends GetxController {
   final header = const HomeHotSealHeaderVO(title: "", subTitle: "").obs;
@@ -26,25 +24,14 @@ class HomeHotSealController extends GetxController {
   }
 
   void _initBanner() async {
-    final response =
-        await dio.get(PathManager.apiFocus, queryParameters: {"position": 2});
-    final dtoList = ResponseDto<List<FocusDto>>.fromJson(
-        response.data, (json) {
-      return (json as List)
-          .map((e) => FocusDto.fromJson(e))
-          .toList();
-    }).result;
+    final dtoList = await HttpClient.getList<FocusDto>(PathManager.apiFocus,
+        queryParameters: {"position": 2}, fromJsonT: FocusDto.fromJson);
     bannerList.value = dtoList?.map((e) => e.convert2VO()).toList() ?? [];
   }
 
   void _initCommodity() async {
-    final response =
-        await dio.get(PathManager.apiPlist, queryParameters: {"is_hot": 1});
-    final dtoList = ResponseDto.fromJson(response.data, (json) {
-      return (json as List)
-          .map((e) => PListDto.fromJson(e))
-          .toList();
-    }).result;
+    final dtoList = await HttpClient.getList<PListDto>(PathManager.apiPlist,
+        queryParameters: {"is_hot": 1}, fromJsonT: PListDto.fromJson);
     commodityList.value =
         dtoList?.map((e) => e.convert2VO()).take(3).toList() ?? [];
   }
@@ -52,7 +39,7 @@ class HomeHotSealController extends GetxController {
 
 extension on FocusDto {
   HomeHotSealBannerVO convert2VO() {
-    return HomeHotSealBannerVO(pic: handleUrl(pic));
+    return HomeHotSealBannerVO(pic: HttpClient.handleUrl(pic));
   }
 }
 
@@ -80,7 +67,7 @@ extension on PListDto {
         title: title,
         subTitle: subTitle,
         price: "￥$price",
-        pic: handleUrl(pic));
+        pic: HttpClient.handleUrl(pic));
   }
 }
 

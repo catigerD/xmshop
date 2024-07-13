@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
-import 'package:xmshop/app/api/dio_manager.dart';
+import 'package:xmshop/app/api/http_client.dart';
 import 'package:xmshop/app/api/path_manager.dart';
-import 'package:xmshop/app/api/url_manager.dart';
 import 'package:xmshop/app/model/pcate_dto.dart';
-import 'package:xmshop/app/model/response_dto.dart';
 
 class CategoryProductController extends GetxController {
   final _categoryList = <CategoryProductListVO>[];
@@ -24,17 +22,8 @@ class CategoryProductController extends GetxController {
       return;
     }
 
-    final response =
-        await dio.get(PathManager.apiPCate, queryParameters: {"pid": pid});
-    List<PCateDto>? dtoList;
-    try {
-      dtoList = ResponseDto<List<PCateDto>>.fromJson(response.data, (json) {
-        return (json as List).map((e) => PCateDto.fromJson(e)).toList();
-      }).result;
-    } catch (e) {
-      dtoList = null;
-    }
-
+    final dtoList = await HttpClient.getList<PCateDto>(PathManager.apiPCate,
+        queryParameters: {"pid": pid}, fromJsonT: PCateDto.fromJson);
     voList = dtoList?.map((e) => e.convert2VO()).toList() ?? [];
 
     if (_curPid == pid) {
@@ -45,7 +34,7 @@ class CategoryProductController extends GetxController {
 
 extension on PCateDto {
   CategoryProductItemVO convert2VO() {
-    return CategoryProductItemVO(pic: handleUrl(pic), title: title);
+    return CategoryProductItemVO(pic: HttpClient.handleUrl(pic), title: title);
   }
 }
 

@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
-import 'package:xmshop/app/api/url_manager.dart';
 import 'package:xmshop/app/model/focus_dto.dart';
-import 'package:xmshop/app/model/response_dto.dart';
 
-import '../../../api/dio_manager.dart';
+import '../../../api/http_client.dart';
 import '../../../api/path_manager.dart';
 
 class HomeBannerController extends GetxController {
@@ -16,15 +14,11 @@ class HomeBannerController extends GetxController {
   }
 
   void _fetchData() async {
-    final response = await dio.get(PathManager.apiFocus);
-    final focusList =
-        ResponseDto<List<FocusDto>>.fromJson(response.data, (json) {
-      return (json as List).map((e) => FocusDto.fromJson(e)).toList();
-    }).result;
-
+    final focusList = await HttpClient.getList<FocusDto>(PathManager.apiFocus,
+        fromJsonT: FocusDto.fromJson);
     imgUrlList.value = focusList
             ?.where((e) => e.pic.isNotEmpty)
-            .map((e) => handleUrl(e.pic))
+            .map((e) => HttpClient.handleUrl(e.pic))
             .toList() ??
         [];
   }
