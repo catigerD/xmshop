@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'home_plist_dto.g.dart';
+part 'plist_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class HomePListDto {
+class PListDto {
   @JsonKey(name: "_id")
   final String id;
   final String title;
@@ -13,11 +13,11 @@ class HomePListDto {
   final String subTitle;
   final String sPic;
 
-  HomePListDto(this.id, this.title, this.cid, this.price, this.pic,
+  PListDto(this.id, this.title, this.cid, this.price, this.pic,
       this.subTitle, this.sPic);
 
-  factory HomePListDto.fromJson(Map<String, dynamic> json) =>
-      _$HomePListDtoFromJson(json);
+  factory PListDto.fromJson(Map<String, dynamic> json) =>
+      _$PListDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$HomePListDtoToJson(this);
+  Map<String, dynamic> toJson() => _$PListDtoToJson(this);
 }

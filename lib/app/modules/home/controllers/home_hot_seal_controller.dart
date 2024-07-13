@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:xmshop/app/api/dio_manager.dart';
 import 'package:xmshop/app/api/path_manager.dart';
 import 'package:xmshop/app/api/url_manager.dart';
-import 'package:xmshop/app/model/home_focus_dto.dart';
-import 'package:xmshop/app/model/home_plist_dto.dart';
+import 'package:xmshop/app/model/focus_dto.dart';
+import 'package:xmshop/app/model/plist_dto.dart';
 import 'package:xmshop/app/model/response_dto.dart';
 
 class HomeHotSealController extends GetxController {
@@ -28,10 +28,10 @@ class HomeHotSealController extends GetxController {
   void _initBanner() async {
     final response =
         await dio.get(PathManager.apiFocus, queryParameters: {"position": 2});
-    final dtoList = ResponseDto<List<HomeFocusDto>>.fromJson(
+    final dtoList = ResponseDto<List<FocusDto>>.fromJson(
         response.data, (json) {
       return (json as List)
-          .map((e) => HomeFocusDto.fromJson(e))
+          .map((e) => FocusDto.fromJson(e))
           .toList();
     }).result;
     bannerList.value = dtoList?.map((e) => e.convert2VO()).toList() ?? [];
@@ -42,7 +42,7 @@ class HomeHotSealController extends GetxController {
         await dio.get(PathManager.apiPlist, queryParameters: {"is_hot": 1});
     final dtoList = ResponseDto.fromJson(response.data, (json) {
       return (json as List)
-          .map((e) => HomePListDto.fromJson(e))
+          .map((e) => PListDto.fromJson(e))
           .toList();
     }).result;
     commodityList.value =
@@ -50,7 +50,7 @@ class HomeHotSealController extends GetxController {
   }
 }
 
-extension on HomeFocusDto {
+extension on FocusDto {
   HomeHotSealBannerVO convert2VO() {
     return HomeHotSealBannerVO(pic: handleUrl(pic));
   }
@@ -74,7 +74,7 @@ class HomeHotSealBannerVO {
   });
 }
 
-extension on HomePListDto {
+extension on PListDto {
   HomeHotSealCommodityVO convert2VO() {
     return HomeHotSealCommodityVO(
         title: title,

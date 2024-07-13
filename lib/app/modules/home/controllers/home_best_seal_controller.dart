@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:xmshop/app/api/dio_manager.dart';
 import 'package:xmshop/app/api/path_manager.dart';
 import 'package:xmshop/app/api/url_manager.dart';
-import 'package:xmshop/app/model/home_plist_dto.dart';
+import 'package:xmshop/app/model/plist_dto.dart';
 import 'package:xmshop/app/model/response_dto.dart';
 
 class HomeBestSealController extends GetxController {
@@ -25,10 +25,10 @@ class HomeBestSealController extends GetxController {
     final response =
         await dio.get(PathManager.apiPlist, queryParameters: {"is_best": 1});
 
-    List<HomePListDto>? dtoList;
+    List<PListDto>? dtoList;
     try {
-      dtoList = ResponseDto<List<HomePListDto>>.fromJson(response.data, (json) {
-        return (json as List).map((e) => HomePListDto.fromJson(e)).toList();
+      dtoList = ResponseDto<List<PListDto>>.fromJson(response.data, (json) {
+        return (json as List).map((e) => PListDto.fromJson(e)).toList();
       }).result;
     } catch (e) {
       dtoList = null;
@@ -48,7 +48,7 @@ class HomeBestSealHeaderVO {
   });
 }
 
-extension on HomePListDto {
+extension on PListDto {
   HomeBestSealCommodityVO convertTo() {
     return HomeBestSealCommodityVO(
         pic: handleUrl(pic),

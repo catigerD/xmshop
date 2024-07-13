@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'home_focus_dto.g.dart';
+part 'focus_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class HomeFocusDto {
+class FocusDto {
   @JsonKey(name: "_id")
   final String id;
   final String title;
@@ -12,7 +12,7 @@ class HomeFocusDto {
   final String url;
   final int position;
 
-  const HomeFocusDto({
+  const FocusDto({
     required this.id,
     required this.title,
     required this.status,
@@ -21,8 +21,8 @@ class HomeFocusDto {
     required this.position,
   });
 
-  factory HomeFocusDto.fromJson(Map<String, dynamic> json) =>
-      _$HomeFocusDtoFromJson(json);
+  factory FocusDto.fromJson(Map<String, dynamic> json) =>
+      _$FocusDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$HomeFocusDtoToJson(this);
+  Map<String, dynamic> toJson() => _$FocusDtoToJson(this);
 }

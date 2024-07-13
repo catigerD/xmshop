@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:xmshop/app/api/dio_manager.dart';
 import 'package:xmshop/app/api/path_manager.dart';
-import 'package:xmshop/app/model/home_pcate_dto.dart';
+import 'package:xmshop/app/model/pcate_dto.dart';
 import 'package:xmshop/app/model/response_dto.dart';
 import 'package:xmshop/app/modules/category/controllers/category_controller.dart';
 
@@ -19,10 +19,10 @@ class CategoryTabController extends GetxController {
 
   void _initTabs() async {
     final response = await dio.get(PathManager.apiPCate);
-    List<HomePcateDto>? dtoList;
+    List<PCateDto>? dtoList;
     try {
-      dtoList = ResponseDto<List<HomePcateDto>>.fromJson(response.data, (json) {
-        return (json as List).map((e) => HomePcateDto.fromJson(e)).toList();
+      dtoList = ResponseDto<List<PCateDto>>.fromJson(response.data, (json) {
+        return (json as List).map((e) => PCateDto.fromJson(e)).toList();
       }).result;
     } catch (e) {
       dtoList = null;
@@ -36,7 +36,7 @@ class CategoryTabController extends GetxController {
   }
 }
 
-extension on HomePcateDto {
+extension on PCateDto {
   CategoryTabItemVO convert2VO() {
     return CategoryTabItemVO(pid: id, title: title);
   }

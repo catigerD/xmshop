@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_focus_dto.dart';
+part of 'focus_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-HomeFocusDto _$HomeFocusDtoFromJson(Map<String, dynamic> json) => HomeFocusDto(
+FocusDto _$FocusDtoFromJson(Map<String, dynamic> json) => FocusDto(
       id: json['_id'] as String,
       title: json['title'] as String,
       status: json['status'] as String,
@@ -15,8 +15,7 @@ HomeFocusDto _$HomeFocusDtoFromJson(Map<String, dynamic> json) => HomeFocusDto(
       position: (json['position'] as num).toInt(),
     );
 
-Map<String, dynamic> _$HomeFocusDtoToJson(HomeFocusDto instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$FocusDtoToJson(FocusDto instance) => <String, dynamic>{
       '_id': instance.id,
       'title': instance.title,
       'status': instance.status,
