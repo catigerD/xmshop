@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class SearchToolbar extends StatelessWidget {
+class SearchToolbarView extends StatelessWidget {
   static final Color _bgColor = Color(int.parse("0xfff6f6f6"));
   static final Color _hintColor = Color(int.parse("0xffafafaf"));
 
   final String title;
 
-  const SearchToolbar({super.key, required this.title});
+  const SearchToolbarView({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/modules/product/toolbar/product_toolbar_controller.dart';
-import 'package:xmshop/app/widget/search_toolbar.dart';
+import 'package:xmshop/app/widget/search_toolbar_view.dart';
 
 class ProductToolbarView extends GetView<ProductToolbarController>
     implements PreferredSizeWidget {
@@ -42,7 +42,7 @@ class ProductToolbarView extends GetView<ProductToolbarController>
           Expanded(
               flex: 1,
               child: Obx(() {
-                return SearchToolbar(title: controller.searchText.value);
+                return SearchToolbarView(title: controller.searchText.value);
               }))
         ],
       ),

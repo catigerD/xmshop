@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/modules/product/list/product_list_controller.dart';
-import 'package:xmshop/app/widget/circular_loading.dart';
+import 'package:xmshop/app/widget/async/async_view.dart';
+import 'package:xmshop/app/widget/async/async_vo.dart';
 
 class ProductListView extends GetView<ProductListController> {
   const ProductListView({super.key});
@@ -9,26 +10,37 @@ class ProductListView extends GetView<ProductListController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return controller.productList.isEmpty ? const CircularLoading() : _list();
+      return AsyncView(
+          state: controller.asyncVO.value.state,
+          contentBuilder: (context) => _list());
     });
   }
 
   Widget _list() {
     return Container(
       padding: const EdgeInsets.only(top: 8),
-      child: ListView.separated(
-        itemCount: controller.productList.length,
-        itemBuilder: (context, index) {
-          return Obx(() {
-            return _item(context, controller.productList[index]);
-          });
-        },
-        separatorBuilder: (context, index) {
-          return const SizedBox(
-            height: 8,
-          );
-        },
-      ),
+      child: Obx(() {
+        return ListView.separated(
+          itemCount:
+              (controller.asyncVO.value as AsyncContentVO<List<ProductItemVO>>)
+                  .content
+                  .length,
+          itemBuilder: (context, index) {
+            return Obx(() {
+              return _item(
+                  context,
+                  (controller.asyncVO.value
+                          as AsyncContentVO<List<ProductItemVO>>)
+                      .content[index]);
+            });
+          },
+          separatorBuilder: (context, index) {
+            return const SizedBox(
+              height: 8,
+            );
+          },
+        );
+      }),
     );
   }
 

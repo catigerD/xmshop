@@ -2,9 +2,10 @@ import 'package:get/get.dart';
 import 'package:xmshop/app/api/http_client.dart';
 import 'package:xmshop/app/api/path_manager.dart';
 import 'package:xmshop/app/model/plist_dto.dart';
+import 'package:xmshop/app/widget/async/async_vo.dart';
 
 class ProductListController extends GetxController {
-  final productList = <ProductItemVO>[].obs;
+  final Rx<AsyncVO> asyncVO = Rx<AsyncVO>(AsyncLoadingVO());
 
   @override
   void onInit() {
@@ -15,13 +16,16 @@ class ProductListController extends GetxController {
   void _initList() async {
     final cid = Get.arguments?["pid"] as String?;
     if (cid == null) {
-      productList.value = [];
+      asyncVO.value = AsyncEmptyVO();
       return;
     }
 
     final dtoList = await HttpClient.getList(PathManager.apiPlist,
         queryParameters: {"cid": cid}, fromJsonT: PListDto.fromJson);
-    productList.value = dtoList?.map((e) => e._convertTo()).toList() ?? [];
+    final itemList = dtoList?.map((e) => e._convertTo()).toList() ?? [];
+    asyncVO.value = itemList.isEmpty
+        ? AsyncEmptyVO()
+        : AsyncContentVO<List<ProductItemVO>>(content: itemList);
   }
 }
 

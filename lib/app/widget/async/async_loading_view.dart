@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CircularLoading extends StatelessWidget {
-  const CircularLoading({super.key});
+class AsyncLoadingView extends StatelessWidget {
+  const AsyncLoadingView({super.key});
 
   @override
   Widget build(BuildContext context) {
