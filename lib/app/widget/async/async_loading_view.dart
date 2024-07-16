@@ -7,8 +7,8 @@ class AsyncLoadingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: SizedBox(
-        width: 50,
-        height: 50,
+        width: 30,
+        height: 30,
         child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation(Colors.blue),
           backgroundColor: Colors.white,

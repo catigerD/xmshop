@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/modules/product/list/product_list_controller.dart';
+import 'package:xmshop/app/widget/async/async_empty_view.dart';
+import 'package:xmshop/app/widget/async/async_loading_view.dart';
 import 'package:xmshop/app/widget/async/async_view.dart';
 import 'package:xmshop/app/widget/async/async_vo.dart';
 
@@ -21,17 +23,17 @@ class ProductListView extends GetView<ProductListController> {
       padding: const EdgeInsets.only(top: 8),
       child: Obx(() {
         return ListView.separated(
-          itemCount:
-              (controller.asyncVO.value as AsyncContentVO<List<ProductItemVO>>)
-                  .content
-                  .length,
+          controller: controller.scrollController,
+          itemCount: (controller.asyncVO.value as ProductListVO).content.length + 1,
           itemBuilder: (context, index) {
             return Obx(() {
-              return _item(
-                  context,
-                  (controller.asyncVO.value
-                          as AsyncContentVO<List<ProductItemVO>>)
-                      .content[index]);
+              if (index ==
+                  (controller.asyncVO.value as ProductListVO).content.length) {
+                return _footer(context);
+              }
+
+              return _item(context,
+                  (controller.asyncVO.value as ProductListVO).content[index]);
             });
           },
           separatorBuilder: (context, index) {
@@ -91,5 +93,16 @@ class ProductListView extends GetView<ProductListController> {
         ],
       ),
     );
+  }
+
+  Widget _footer(BuildContext context) {
+    return Obx(() {
+      return SizedBox(
+        height: 60,
+        child: controller.hasMore.value
+            ? const AsyncLoadingView()
+            : const AsyncEmptyView(),
+      );
+    });
   }
 }
