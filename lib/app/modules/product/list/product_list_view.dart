@@ -24,7 +24,8 @@ class ProductListView extends GetView<ProductListController> {
       child: Obx(() {
         return ListView.separated(
           controller: controller.scrollController,
-          itemCount: (controller.asyncVO.value as ProductListVO).content.length + 1,
+          itemCount:
+              (controller.asyncVO.value as ProductListVO).content.length + 1,
           itemBuilder: (context, index) {
             return Obx(() {
               if (index ==

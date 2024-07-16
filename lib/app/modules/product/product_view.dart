@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:xmshop/app/modules/product/filter/product_filter_view.dart';
 import 'package:xmshop/app/modules/product/list/product_list_view.dart';
 import 'package:xmshop/app/modules/product/product_controller.dart';
 import 'package:xmshop/app/modules/product/toolbar/product_toolbar_view.dart';
@@ -16,7 +17,10 @@ class ProductView extends GetView<ProductController> {
       appBar: const ProductToolbarView(),
       body: Container(
         color: bodyColor,
-        child: const ProductListView(),
+        child: const Column(children: [
+          ProductFilterView(),
+          Expanded(child: ProductListView())
+        ]),
       ),
     );
   }

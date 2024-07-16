@@ -16,6 +16,7 @@ class ProductListController extends GetxController {
 
   var _isLoading = false;
   final hasMore = true.obs;
+  String? _sort;
 
   @override
   void onInit() {
@@ -31,6 +32,12 @@ class ProductListController extends GetxController {
         _loadList();
       }
     });
+  }
+
+  void updateSort(String? sort) {
+    _reset();
+    _sort = sort;
+    _loadList();
   }
 
   void _loadList() async {
@@ -55,7 +62,8 @@ class ProductListController extends GetxController {
         queryParameters: {
           "cid": cid,
           "page": _pageIndex,
-          "pageSize": _pageSize
+          "pageSize": _pageSize,
+          "sort": _sort
         },
         fromJsonT: PListDto.fromJson);
     final voList = dtoList?.map((e) => e._convertTo()).toList() ?? [];
@@ -73,6 +81,14 @@ class ProductListController extends GetxController {
     _pageIndex++;
     hasMore.value = voList.length >= _pageSize;
     _isLoading = false;
+  }
+
+  void _reset() {
+    asyncVO.value = AsyncLoadingVO();
+    _pageIndex = 1;
+    _isLoading = false;
+    hasMore.value = true;
+    _sort = null;
   }
 }
 
