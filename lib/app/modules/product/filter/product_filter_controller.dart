@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:xmshop/app/modules/product/list/product_list_controller.dart';
 
 class ProductFilterController extends GetxController {
-  final listController = Get.find<ProductListController>();
+  late final listController = Get.find<ProductListController>();
 
   final itemList = <ProductFilterItemVO>[
     const ProductFilterItemVO(
