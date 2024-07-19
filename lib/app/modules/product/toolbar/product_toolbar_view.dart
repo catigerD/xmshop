@@ -1,51 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/modules/product/toolbar/product_toolbar_controller.dart';
-import 'package:xmshop/app/widget/search_toolbar_view.dart';
+import 'package:xmshop/app/widget/search_app_bar.dart';
 
 class ProductToolbarView extends GetView<ProductToolbarController>
     implements PreferredSizeWidget {
-  static const _height = 36.0;
-  static final _arrowColor = Color(int.parse("0xff383838"));
-
   @override
-  Size get preferredSize => const Size.fromHeight(_height);
+  Size get preferredSize => const Size.fromHeight(SearchAppBar.height);
 
   const ProductToolbarView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topLeft,
-      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      padding: const EdgeInsets.only(left: 12, right: 12, bottom: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          InkWell(
+    return Obx(() {
+      return SearchAppBar(
+        enable: false,
+        hintText: controller.hintText.value,
+        leadBuilder: (context) {
+          return InkWell(
             onTap: () {
               Get.back();
             },
             child: Container(
-              height: double.infinity,
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.keyboard_arrow_left,
-                size: 24,
-                color: _arrowColor,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(right: 12),
+              child: const Icon(
+                Icons.arrow_back_ios_new,
+                size: 20,
               ),
             ),
-          ),
-          const SizedBox(
-            width: 12,
-          ),
-          Expanded(
-              flex: 1,
-              child: Obx(() {
-                return SearchToolbarView(title: controller.searchText.value);
-              }))
-        ],
-      ),
-    );
+          );
+        },
+      );
+    });
   }
 }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:xmshop/app/api/http_client.dart';
 import 'package:xmshop/app/api/path_manager.dart';
 import 'package:xmshop/app/model/plist_dto.dart';
+import 'package:xmshop/app/routes/product_launcher.dart';
 import 'package:xmshop/app/widget/async/async_vo.dart';
 
 class ProductListController extends GetxController {
@@ -50,8 +51,15 @@ class ProductListController extends GetxController {
     }
     _isLoading = true;
 
-    final cid = Get.arguments?["pid"] as String?;
-    if (cid == null) {
+    final launcher = ProductLauncher.launcher;
+    String? cid;
+    String? keyword;
+    if (launcher is ProductCategoryLauncher) {
+      cid = launcher.pid;
+    } else if (launcher is ProductKeywordLauncher) {
+      keyword = launcher.keyword;
+    }
+    if (cid == null && keyword == null) {
       asyncVO.value = AsyncEmptyVO();
       _isLoading = false;
       hasMore.value = false;
@@ -63,7 +71,8 @@ class ProductListController extends GetxController {
           "cid": cid,
           "page": _pageIndex,
           "pageSize": _pageSize,
-          "sort": _sort
+          "sort": _sort,
+          "search": keyword
         },
         fromJsonT: PListDto.fromJson);
     final voList = dtoList?.map((e) => e._convertTo()).toList() ?? [];

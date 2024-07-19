@@ -8,8 +8,8 @@ class SearchView extends GetView<SearchController> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xffF3F3F3),
+    return Scaffold(
+      backgroundColor: const Color(0xffF3F3F3),
       appBar: SearchToolbarView(),
       body: Column(
         children: [SearchHistoryView()],

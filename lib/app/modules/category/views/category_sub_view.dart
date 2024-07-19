@@ -5,6 +5,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/modules/category/controllers/category_sub_controller.dart';
 import 'package:xmshop/app/routes/app_pages.dart';
+import 'package:xmshop/app/routes/product_launcher.dart';
 
 class CategorySubView extends GetView<CategorySubController> {
   CategorySubView({super.key, required this.tabPid}) {
@@ -50,8 +51,7 @@ class CategorySubView extends GetView<CategorySubController> {
   Widget _item(BuildContext context, CategorySubItemVO vo) {
     return InkWell(
       onTap: () {
-        Get.toNamed(Routes.PRODUCT,
-            arguments: {"pid": vo.id, "title": vo.title});
+        ProductCategoryLauncher(pid: vo.id, title: vo.title).to();
       },
       child: Column(
         children: [

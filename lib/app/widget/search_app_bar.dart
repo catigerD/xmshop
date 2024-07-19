@@ -18,18 +18,20 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? hintText;
   final TextEditingController? controller;
 
+  final void Function(String?)? onSubmitted;
+
   @override
   Size get preferredSize => const Size.fromHeight(height);
 
-  const SearchAppBar({
-    super.key,
-    this.leadBuilder,
-    this.tailBuilder,
-    this.enable = false,
-    this.autofocus = false,
-    this.hintText,
-    this.controller,
-  });
+  const SearchAppBar(
+      {super.key,
+      this.leadBuilder,
+      this.tailBuilder,
+      this.enable = false,
+      this.autofocus = false,
+      this.hintText,
+      this.controller,
+      this.onSubmitted});
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +68,7 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
             enabled: enable,
             style: Theme.of(context).textTheme.labelMedium,
             controller: controller,
+            onSubmitted: onSubmitted,
             decoration: InputDecoration(
               filled: true,
               fillColor: _bgColor,
