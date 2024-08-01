@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:xmshop/app/modules/detail/detail_binding.dart';
+import 'package:xmshop/app/modules/detail/detail_view.dart';
 import 'package:xmshop/app/modules/product/product_binding.dart';
 import 'package:xmshop/app/modules/product/product_view.dart';
 import 'package:xmshop/app/modules/search/search_bindings.dart';
@@ -12,7 +14,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.TABS;
+  static const INITIAL = Routes.DETAIL;
 
   static final routes = [
     GetPage(
@@ -25,7 +27,11 @@ class AppPages {
         binding: ProductBinding()),
     GetPage(
         name: _Paths.SEARCH,
-        page: () => SearchView(),
-        binding: SearchBindings())
+        page: () => const SearchView(),
+        binding: SearchBindings()),
+    GetPage(
+        name: _Paths.DETAIL,
+        page: () => DetailView(),
+        binding: DetailBinding()),
   ];
 }

@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/modules/home/controllers/home_best_seal_controller.dart';
+import 'package:xmshop/app/routes/detail_launcher.dart';
 
 class HomeBestSealView extends GetView<HomeBestSealController> {
   const HomeBestSealView({super.key});
@@ -62,37 +63,42 @@ class HomeBestSealView extends GetView<HomeBestSealController> {
   }
 
   Widget _commodityItem(BuildContext context, HomeBestSealCommodityVO vo) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(8, 12, 8, 12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Color(int.parse("0xfff8f8f8")),
-      ),
-      child: Column(
-        children: [
-          Image.network(vo.pic),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              vo.title,
-              style: Theme.of(context).textTheme.titleMedium,
+    return InkWell(
+      onTap: () {
+        DefaultDetailLauncher().to();
+      },
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(8, 12, 8, 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Color(int.parse("0xfff8f8f8")),
+        ),
+        child: Column(
+          children: [
+            Image.network(vo.pic),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                vo.title,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              vo.subTitle,
-              style: Theme.of(context).textTheme.labelMedium,
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                vo.subTitle,
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
             ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              vo.price,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-          )
-        ],
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                vo.price,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
